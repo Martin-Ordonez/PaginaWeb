@@ -123,6 +123,7 @@ Cuando el editor entregue un archivo (normalmente lo dejará en la carpeta `entr
 ## Publicación (GitHub Pages)
 
 - La página se publica sola en GitHub Pages cada vez que el editor hace "Push" desde GitHub Desktop. La receta está en `.github/workflows/publicar.yml`: arma el sitio con Eleventy y le pasa el prefijo de la subcarpeta (`--pathprefix`), así que los enlaces internos deben seguir escribiéndose con `/` al inicio.
+- **Cuidado con `package-lock.json`:** el npm 11 de este computador lo escribe con entradas `"extraneous": true` y entonces `npm ci` falla en GitHub (error EBADPLATFORM por `fsevents`). Si hay que regenerarlo, usar `npx -y npm@10 install --package-lock-only` y comprobar que no contenga la palabra `extraneous`.
 - Tarda uno o dos minutos en actualizarse. Si algo falla, se ve en la pestaña "Actions" del repositorio en GitHub.
 - El repositorio es público: no guardar en él nada privado (los Word/PDF originales van en `entrada/`, que no se sube).
 
