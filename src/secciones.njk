@@ -1,0 +1,27 @@
+---
+layout: base.njk
+pagination:
+  data: sitio.secciones
+  size: 1
+  alias: sec
+permalink: "/{{ sec.slug }}/"
+eleventyComputed:
+  titulo: "{{ sec.nombre }}"
+  resumen: "{{ sec.descripcion }}"
+---
+{% from "tarjetas.njk" import lista %}
+
+{# Encabezado de la sección: cuadro azul + pintura de la sección #}
+<section class="ancho hero hero--seccion">
+  <div class="hero__panel">
+    <h1>{{ sec.nombre }}</h1>
+    <p>{{ sec.descripcion }}</p>
+  </div>
+  <figure class="hero__figura">
+    <img src="/img/secciones/{{ sec.slug }}.jpg" alt="" style="object-position: {{ sec.foco }}">
+  </figure>
+</section>
+
+<section class="ancho bloque">
+  {{ lista(collections.articulos | deSeccion(sec.slug), "h2") }}
+</section>

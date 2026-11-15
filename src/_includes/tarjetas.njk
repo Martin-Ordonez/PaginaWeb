@@ -1,0 +1,29 @@
+{# Lista de tarjetas de artículos. Se usa en la portada y en cada sección. #}
+{# nivel: nivel del título de cada tarjeta (h2 o h3), según la página #}
+{% macro lista(articulos, nivel = "h3") %}
+{% if articulos.length %}
+<ul class="tarjetas">
+  {%- for a in articulos %}
+  {%- set sec = a.data.seccion | datosSeccion %}
+  <li class="revelar" style="--i: {{ loop.index0 % 3 }}">
+    <a class="tarjeta" href="{{ a.url }}">
+      {%- if a.data.imagen %}
+      <img class="tarjeta__img" src="/img/articulos/{{ a.data.imagen }}" alt="" loading="lazy">
+      {%- else %}
+      <img class="tarjeta__img" src="/img/secciones/{{ sec.slug }}.jpg" alt="" loading="lazy" style="object-position: {{ sec.foco }}">
+      {%- endif %}
+      <div class="tarjeta__texto">
+        <{{ nivel }} class="tarjeta__titulo">{{ a.data.titulo }}</{{ nivel }}>
+        <p class="tarjeta__datos">
+          <span class="tarjeta__seccion">{{ sec.nombre }}</span>
+          <time datetime="{{ a.data.fecha | fechaISO }}">{{ a.data.fecha | fechaLarga }}</time>
+        </p>
+      </div>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>
+{% else %}
+<p class="vacio">Todavía no hay artículos aquí. Pronto publicaremos el primero.</p>
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if titulo %}{{ titulo }} · {% endif %}{{ sitio.nombre }}</title>
+  <meta name="description" content="{{ resumen or sitio.descripcion }}">
+  <meta property="og:site_name" content="{{ sitio.nombre }}">
+  <meta property="og:title" content="{{ titulo or sitio.nombre }}">
+  <meta property="og:description" content="{{ resumen or sitio.descripcion }}">
+  <meta property="og:type" content="{% if autor %}article{% else %}website{% endif %}">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/estilo.css">
+  <script src="/js/sitio.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  {# ---------- Cabecera con el menú ---------- #}
+  <header class="cabecera">
+    <div class="ancho cabecera__fila">
+      <a class="marca" href="/">
+        <span class="marca__nombre">{{ sitio.nombre }}</span>
+        <span class="marca__lema">{{ sitio.lema }}</span>
+      </a>
+      <nav aria-label="Secciones">
+        <ul class="menu">
+          <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Inicio</a></li>
+          {%- for s in sitio.secciones %}
+          <li><a href="/{{ s.slug }}/"{% if page.url == "/" + s.slug + "/" or seccion == s.slug %} aria-current="page"{% endif %}>{{ s.nombre }}</a></li>
+          {%- endfor %}
+          <li><a href="/quienes-somos/"{% if page.url == "/quienes-somos/" %} aria-current="page"{% endif %}>Quiénes somos</a></li>
+          <li><a href="/#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    {{ content | safe }}
+  </main>
+
+  {# ---------- Pie de página con redes ---------- #}
+  <footer class="pie">
+    <div class="ancho pie__columnas">
+      <div>
+        <p class="pie__marca">{{ sitio.nombre }}</p>
+        <p class="pie__lema">{{ sitio.lema }}</p>
+      </div>
+
+      <nav aria-label="Secciones (pie de página)">
+        <h2 class="pie__titulo">Secciones</h2>
+        <ul class="pie__lista">
+          {%- for s in sitio.secciones %}
+          <li><a href="/{{ s.slug }}/">{{ s.nombre }}</a></li>
+          {%- endfor %}
+          <li><a href="/quienes-somos/">Quiénes somos</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="pie__titulo">Síguenos</h2>
+        <ul class="pie__lista pie__redes">
+          {%- for r in sitio.redes %}
+          <li>
+            <a href="{{ r.url }}">
+              {% include "iconos/" + r.red + ".svg" %}
+              <span>{{ r.nombre }} <span class="pie__usuario">{{ r.usuario }}</span></span>
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="ancho pie__final">
+      <p>© {{ anio }} {{ sitio.nombre }}</p>
+      <p><a href="/quienes-somos/#creditos">Créditos de las imágenes</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+<article class="articulo ancho">
+  <header class="articulo__cabecera">
+    <h1>{{ titulo }}</h1>
+    <p class="articulo__resumen">{{ resumen }}</p>
+    <p class="articulo__datos">
+      <span>Por <strong>{{ autor }}</strong></span>
+      <time datetime="{{ fecha | fechaISO }}">{{ fecha | fechaLarga }}</time>
+      <a href="/{{ seccion }}/">{{ seccion | nombreSeccion }}</a>
+    </p>
+  </header>
+
+  {% if imagen %}
+  <img class="articulo__portada" src="/img/articulos/{{ imagen }}" alt="">
+  {% endif %}
+
+  <div class="prosa">
+    {{ content | safe }}
+  </div>
+
+  <p class="articulo__volver">
+    <a href="/{{ seccion }}/">Ver más artículos de {{ seccion | nombreSeccion }}</a>
+  </p>
+</article>

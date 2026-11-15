@@ -1,0 +1,925 @@
+/* ==========================================================
+   Estilos de la página.
+   Fondo blanco, cuadros azules con letras blancas y texto
+   oscuro fuera de ellos. Para cambiar los colores, edita los
+   valores de ":root".
+   ========================================================== */
+
+:root {
+  --blanco: #ffffff;
+  --tinta: #0d1526;         /* texto principal (casi negro) */
+  --tinta-suave: #47546b;   /* texto secundario */
+  --azul: #1b3f9c;          /* cuadros azules, enlaces y botones */
+  --azul-oscuro: #0f2460;   /* pie de página y estados al pasar el ratón */
+  --azul-claro: #eaf0fb;    /* fondos suaves (citas, campos) */
+  --azul-palido: #c9d8f5;   /* texto secundario sobre azul */
+  --linea: #dbe3f0;         /* bordes */
+
+  --fuente: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --radio: 18px;
+  --radio-chico: 10px;
+  --suave: cubic-bezier(0.16, 1, 0.3, 1); /* curva de las animaciones */
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scrollbar-color: #a9bbe0 var(--blanco);
+}
+
+::selection {
+  background: var(--azul);
+  color: var(--blanco);
+}
+
+body {
+  margin: 0;
+  background: var(--blanco);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  accent-color: var(--azul);
+}
+
+main {
+  flex: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--azul);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--azul-oscuro);
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.ancho {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.saltar {
+  position: absolute;
+  left: -999rem;
+  top: 0;
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  padding: 0.75rem 1rem;
+  z-index: 10;
+}
+
+.saltar:hover,
+.saltar:focus {
+  color: var(--blanco);
+}
+
+.saltar:focus {
+  left: 0;
+}
+
+/* ---------- Botones ---------- */
+
+.boton {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s var(--suave);
+}
+
+.boton:active {
+  transform: scale(0.97);
+}
+
+/* Botón blanco: va dentro de los cuadros azules */
+.boton--claro {
+  background: var(--blanco);
+  color: var(--azul);
+}
+
+.boton--claro:hover {
+  background: var(--azul-claro);
+  color: var(--azul-oscuro);
+}
+
+/* Botón azul: va sobre el fondo blanco */
+.boton--azul {
+  background: var(--azul);
+  color: var(--blanco);
+}
+
+.boton--azul:hover {
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+}
+
+/* ---------- Cabecera y menú ---------- */
+
+.cabecera {
+  background: var(--blanco);
+  border-bottom: 1px solid var(--linea);
+}
+
+.cabecera__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 2.5rem;
+  padding-block: 1rem 0.6rem;
+}
+
+.marca {
+  display: flex;
+  flex-direction: column;
+  color: var(--tinta);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.marca:hover {
+  color: var(--tinta);
+}
+
+.marca__nombre {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--azul);
+}
+
+.marca__lema {
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.menu a {
+  display: inline-block;
+  padding: 0.6rem 0 0.45rem;
+  color: var(--tinta-suave);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.menu a:hover,
+.menu a[aria-current] {
+  color: var(--tinta);
+  border-bottom-color: var(--azul);
+}
+
+.menu a[aria-current] {
+  font-weight: 700;
+}
+
+/* ---------- Hero: cuadro azul + pintura ---------- */
+
+.hero {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1.25rem;
+}
+
+.hero__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.75rem, 5vw, 4rem);
+  background: var(--azul);
+  color: var(--blanco);
+  border-radius: var(--radio);
+}
+
+.hero__panel h1 {
+  font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero__panel p {
+  margin: 1.1rem 0 0;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.2rem);
+  color: var(--azul-palido);
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.hero__enlace {
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.hero__enlace:hover {
+  color: var(--azul-palido);
+}
+
+.hero__panel :focus-visible {
+  outline-color: var(--blanco);
+}
+
+.hero__figura {
+  position: relative;
+  margin: 0;
+  min-height: 15rem;
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--azul-claro);
+}
+
+.hero__figura img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 40%;
+}
+
+.hero__figura figcaption {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgb(13 21 38 / 0.72);
+  color: var(--blanco);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 46rem) {
+  .hero {
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height: min(36rem, 78vh);
+  }
+
+  .hero--seccion {
+    grid-template-columns: 1fr 1fr;
+    min-height: 17rem;
+  }
+
+  .hero--solo {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Entrada del hero al cargar la página */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__panel > * {
+    animation: subir 0.8s var(--suave) both;
+  }
+
+  .hero__panel > :nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .hero__panel > :nth-child(3) {
+    animation-delay: 0.16s;
+  }
+
+  .hero__figura img {
+    animation: acercar 1.4s var(--suave) both;
+  }
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes acercar {
+  from {
+    transform: scale(1.06);
+  }
+}
+
+/* ---------- Bloques de la portada ---------- */
+
+.bloque {
+  padding-block: clamp(2.75rem, 7vw, 5rem) 0;
+}
+
+.bloque__titulo {
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.3rem);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Temas: un cuadro por sección ---------- */
+
+.temas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+}
+
+.tema {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  text-decoration: none;
+}
+
+.tema:hover {
+  color: var(--blanco);
+}
+
+.tema img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--suave);
+}
+
+.tema:hover img {
+  transform: scale(1.05);
+}
+
+/* Velo azul para que el texto blanco siempre se lea */
+.tema::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(15 36 96 / 0.96) 0%, rgb(15 36 96 / 0.78) 30%, rgb(27 63 156 / 0.12) 68%);
+}
+
+.tema__texto {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.25rem;
+}
+
+.tema__nombre {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.tema__descripcion {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--azul-palido);
+}
+
+/* Con las cuatro en fila, los cuadros son verticales */
+@media (min-width: 66rem) {
+  .tema {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* ---------- Tarjetas de artículos ---------- */
+
+.tarjetas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  overflow: hidden;
+  color: var(--tinta);
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.3s, transform 0.3s var(--suave);
+}
+
+.tarjeta:hover {
+  color: var(--tinta);
+  border-color: #b4c5e6;
+  box-shadow: 0 14px 30px -12px rgb(15 36 96 / 0.28);
+  transform: translateY(-3px);
+}
+
+.tarjeta__img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--azul-claro);
+}
+
+.tarjeta__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.tarjeta__titulo {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.tarjeta__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.9rem;
+  margin: auto 0 0;
+  padding-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--tinta-suave);
+}
+
+.tarjeta__seccion {
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.vacio {
+  color: var(--tinta-suave);
+}
+
+/* ---------- Sobre nosotros ---------- */
+
+.nosotros {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.nosotros__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio);
+}
+
+.nosotros__texto p {
+  margin: 0 0 1rem;
+  max-width: 58ch;
+  color: var(--tinta-suave);
+  font-size: 1.1rem;
+}
+
+.nosotros__texto .boton {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 46rem) {
+  .nosotros {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+  }
+}
+
+/* ---------- Contacto: cuadro azul con formulario ---------- */
+
+.contacto {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  background: var(--azul);
+  color: var(--blanco);
+  border-radius: var(--radio);
+}
+
+.contacto h2 {
+  font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.5rem);
+}
+
+.contacto__texto p {
+  margin: 1rem 0 0;
+  max-width: 40ch;
+  font-size: 1.1rem;
+  color: var(--azul-palido);
+}
+
+.formulario {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.campo {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.campo label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 2px solid transparent;
+  border-radius: var(--radio-chico);
+  background: var(--blanco);
+  color: var(--tinta);
+  font: inherit;
+  caret-color: var(--azul);
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.contacto :focus-visible {
+  outline-color: var(--blanco);
+}
+
+.formulario__aviso {
+  margin: 0;
+  min-height: 1.5em;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media (min-width: 46rem) {
+  .contacto {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3.5rem;
+  }
+}
+
+/* ---------- Artículo y páginas de texto ---------- */
+
+.articulo {
+  max-width: 46rem;
+  padding-block: clamp(2rem, 6vw, 3.5rem) 0;
+}
+
+.articulo__cabecera h1 {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.articulo__resumen {
+  margin: 1rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+}
+
+.articulo__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.25rem;
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--linea);
+  font-size: 0.925rem;
+  color: var(--tinta-suave);
+}
+
+.articulo__datos strong {
+  color: var(--tinta);
+  font-weight: 700;
+}
+
+.articulo__datos a {
+  font-weight: 700;
+}
+
+.articulo__portada {
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: var(--radio);
+}
+
+.articulo__volver {
+  margin: 3rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+}
+
+/* Texto del artículo */
+
+.prosa {
+  margin-top: 2rem;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.prosa > * {
+  margin-block: 0 1.25em;
+}
+
+.prosa p {
+  text-wrap: pretty;
+}
+
+.prosa h2 {
+  font-size: 1.6rem;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+
+.prosa h3 {
+  font-size: 1.25rem;
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+}
+
+.prosa ul,
+.prosa ol {
+  padding-left: 1.4em;
+}
+
+.prosa li {
+  margin-bottom: 0.4em;
+}
+
+.prosa li::marker {
+  color: var(--azul);
+  font-weight: 700;
+}
+
+/* Citas (por ejemplo, versículos bíblicos): cuadro azul claro */
+.prosa blockquote {
+  margin-inline: 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radio-chico);
+  background: var(--azul-claro);
+  font-size: 1.08em;
+  font-weight: 500;
+  color: var(--azul-oscuro);
+}
+
+.prosa blockquote p {
+  margin: 0 0 0.5em;
+}
+
+.prosa blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.prosa blockquote em {
+  font-style: normal;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.prosa img {
+  border-radius: var(--radio-chico);
+  margin-inline: auto;
+}
+
+.prosa hr {
+  border: 0;
+  border-top: 1px solid var(--linea);
+  margin-block: 2.5em;
+}
+
+.prosa table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.prosa th,
+.prosa td {
+  border: 1px solid var(--linea);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.prosa th {
+  background: var(--azul-claro);
+}
+
+/* ---------- Pie de página ---------- */
+
+.pie {
+  margin-top: clamp(3rem, 8vw, 5.5rem);
+  background: var(--azul-oscuro);
+  color: var(--azul-palido);
+  font-size: 0.95rem;
+}
+
+.pie a {
+  color: var(--blanco);
+  text-decoration: none;
+}
+
+.pie a:hover {
+  text-decoration: underline;
+}
+
+.pie :focus-visible {
+  outline-color: var(--blanco);
+}
+
+.pie__columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 2rem 3rem;
+  padding-block: 3rem 2rem;
+}
+
+.pie__marca {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--blanco);
+}
+
+.pie__lema {
+  margin: 0.25rem 0 0;
+}
+
+.pie__titulo {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: var(--blanco);
+}
+
+.pie__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.pie__lista a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-block: 0.3rem;
+}
+
+.pie__usuario {
+  color: var(--azul-palido);
+}
+
+.icono {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
+}
+
+.pie__final {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid rgb(201 216 245 / 0.22);
+  font-size: 0.875rem;
+}
+
+.pie__final p {
+  margin: 0;
+}
+
+/* ---------- Animaciones al bajar por la página ----------
+   Solo se activan si el JavaScript añade "con-animacion" a la página;
+   sin él, todo se ve normalmente. "--i" escalona elementos vecinos. */
+
+.con-animacion .revelar {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s var(--suave), transform 0.8s var(--suave);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.con-animacion .revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Al imprimir un artículo ---------- */
+
+@media print {
+  body {
+    font-size: 11pt;
+  }
+
+  .cabecera nav,
+  .saltar,
+  .articulo__volver,
+  .pie {
+    display: none;
+  }
+
+  .con-animacion .revelar {
+    opacity: 1;
+    transform: none;
+  }
+
+  .articulo {
+    max-width: none;
+    padding-block: 1rem 0;
+  }
+
+  .prosa {
+    font-size: 12pt;
+  }
+
+  .prosa h2,
+  .prosa h3 {
+    break-after: avoid;
+  }
+}
+
+/* ---------- Menos movimiento, si la persona lo pidió ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

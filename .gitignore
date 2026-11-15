@@ -1,0 +1,8 @@
+# Programas descargados automáticamente (se recrean con "npm install")
+node_modules/
+
+# Página ya armada (se recrea sola cada vez)
+_site/
+
+# Archivos Word/PDF originales que mandan los hermanos (no se publican)
+entrada/

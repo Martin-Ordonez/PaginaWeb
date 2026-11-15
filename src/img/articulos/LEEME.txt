@@ -1,0 +1,7 @@
+Aquí van las imágenes de portada de los artículos.
+
+- Usa nombres simples, en minúsculas y sin espacios ni tildes.
+  Ejemplo: la-oracion-diaria.jpg
+- Tamaño recomendado: horizontal, unos 1200 x 675 píxeles.
+- En el artículo se escribe solo el nombre del archivo:
+  imagen: la-oracion-diaria.jpg

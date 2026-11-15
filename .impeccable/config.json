@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "_site/articulos/2026-11-05-ensenar-la-biblia-a-los-ninos/index.html"
+        ],
+        "createdAt": "2026-11-15T06:11:40.971Z",
+        "reason": "agent: falso positivo; el detector informa 176px pero el h1 medido en el navegador es 48px (clamp con tope de 3rem)"
+      },
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "_site/articulos/2026-11-14-lampara-a-mis-pies/index.html"
+        ],
+        "createdAt": "2026-11-15T06:11:41.191Z",
+        "reason": "agent: falso positivo; el detector informa 176px pero el h1 medido en el navegador es 48px (clamp con tope de 3rem)"
+      },
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "_site/articulos/2026-10-28-nueva-pagina-de-articulos/index.html"
+        ],
+        "createdAt": "2026-11-15T06:11:41.372Z",
+        "reason": "agent: falso positivo; el detector informa 176px pero el h1 medido en el navegador es 48px (clamp con tope de 3rem)"
+      }
+    ]
+  }
+}

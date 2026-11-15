@@ -1,0 +1,25 @@
+---
+layout: base.njk
+---
+<article class="articulo ancho">
+  <header class="articulo__cabecera">
+    <h1>{{ titulo }}</h1>
+  </header>
+  <div class="prosa">
+    {{ content | safe }}
+
+    {# Lista de créditos de las imágenes (se activa con "creditos: true" en la página) #}
+    {% if creditos %}
+    <h2 id="creditos">Créditos de las imágenes</h2>
+    <p>Las pinturas que ilustran esta página son obras clásicas de dominio público, tomadas de Wikimedia Commons.</p>
+    <ul>
+      {%- for c in sitio.creditos %}
+      <li>
+        <a href="{{ c.fuente }}">{{ c.obra }}</a>, {{ c.autor }}{% if c.fecha %}, {{ c.fecha }}{% endif %}.
+        {{ c.licencia }}. Se usa en: {{ c.uso }}.
+      </li>
+      {%- endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</article>

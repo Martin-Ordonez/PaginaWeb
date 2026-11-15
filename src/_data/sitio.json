@@ -1,0 +1,112 @@
+{
+  "nombre": "Luz y Palabra",
+  "lema": "Artículos para crecer en la fe",
+  "descripcion": "Estudios bíblicos, vida cristiana, educación y noticias del mundo cristiano, escritos por hermanos para todo público.",
+
+  "bienvenida": {
+    "titulo": "Conoce más de la Palabra, un artículo a la vez",
+    "texto": "Estudios bíblicos, reflexiones para la vida diaria, material educativo y noticias del mundo cristiano, escritos por hermanos y pensados para todo público. (Texto de ejemplo: cámbialo por el tuyo.)",
+    "boton": "Leer los artículos",
+    "imagen": "sermon-del-monte.jpg",
+    "pie": "Carl Bloch, «El Sermón del Monte» (1877)"
+  },
+
+  "nosotros": {
+    "titulo": "Sobre nosotros",
+    "texto": [
+      "Somos seis hermanos en la fe que, desde distintos lugares y oficios, compartimos un mismo deseo: estudiar la Palabra de Dios y poner al alcance de otros lo que vamos aprendiendo.",
+      "Cada artículo es escrito por uno de nosotros y revisado antes de publicarse. Procuramos escribir con claridad, con respeto y siempre con la Biblia abierta. (Texto de ejemplo.)"
+    ],
+    "imagen": "biblia-abierta.jpg"
+  },
+
+  "contacto": {
+    "titulo": "Escríbenos",
+    "texto": "¿Tienes una pregunta, una sugerencia o un tema que te gustaría que tratáramos? Nos alegrará leerte.",
+    "correo": "contacto@luzypalabra.example"
+  },
+
+  "redes": [
+    { "red": "facebook", "nombre": "Facebook", "usuario": "Luz y Palabra", "url": "#" },
+    { "red": "instagram", "nombre": "Instagram", "usuario": "@luzypalabra", "url": "#" },
+    { "red": "youtube", "nombre": "YouTube", "usuario": "@luzypalabra", "url": "#" }
+  ],
+
+  "secciones": [
+    {
+      "slug": "estudios-biblicos",
+      "nombre": "Estudios bíblicos",
+      "descripcion": "Estudios para conocer mejor las Escrituras.",
+      "foco": "50% 35%"
+    },
+    {
+      "slug": "vida-cristiana",
+      "nombre": "Vida cristiana",
+      "descripcion": "Reflexiones para vivir la fe en el día a día.",
+      "foco": "50% 60%"
+    },
+    {
+      "slug": "educacion",
+      "nombre": "Educación",
+      "descripcion": "Material para enseñar y aprender.",
+      "foco": "50% 30%"
+    },
+    {
+      "slug": "noticias",
+      "nombre": "Noticias",
+      "descripcion": "Novedades y acontecimientos del mundo cristiano.",
+      "foco": "50% 40%"
+    }
+  ],
+
+  "creditos": [
+    {
+      "obra": "El Sermón del Monte",
+      "autor": "Carl Bloch",
+      "fecha": "1877",
+      "uso": "Portada",
+      "licencia": "Dominio público",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Carl_Bloch_-_The_Sermon_on_the_Mount.jpg"
+    },
+    {
+      "obra": "San Jerónimo escribiendo",
+      "autor": "Caravaggio",
+      "fecha": "hacia 1605",
+      "uso": "Estudios bíblicos",
+      "licencia": "Dominio público",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Saint_Jerome_Writing-Caravaggio_(1605-6).jpg"
+    },
+    {
+      "obra": "El Ángelus",
+      "autor": "Jean-François Millet",
+      "fecha": "1857-1859",
+      "uso": "Vida cristiana",
+      "licencia": "Dominio público",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Jean-Fran%C3%A7ois_Millet_-_The_Angelus_-_Google_Art_Project.jpg"
+    },
+    {
+      "obra": "Cristo en casa de Marta y María",
+      "autor": "Johannes Vermeer",
+      "fecha": "hacia 1655",
+      "uso": "Educación",
+      "licencia": "Dominio público",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Johannes_(Jan)_Vermeer_-_Christ_in_the_House_of_Martha_and_Mary_-_Google_Art_Project.jpg"
+    },
+    {
+      "obra": "San Pablo predicando en Atenas",
+      "autor": "Rafael",
+      "fecha": "hacia 1515",
+      "uso": "Noticias",
+      "licencia": "Dominio público",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Raphael_-_St_Paul_Preaching_at_Athens_c.1515-6.jpg"
+    },
+    {
+      "obra": "Fotografía de una Biblia abierta en el Salmo 143",
+      "autor": "publicada en Unsplash",
+      "fecha": "",
+      "uso": "Sobre nosotros",
+      "licencia": "CC0 (sin derechos reservados)",
+      "fuente": "https://commons.wikimedia.org/wiki/File:Bokeh_photo_of_an_English_Bible,_opened_at_Psalm_143,_with_fallen_leaves_(Unsplash).jpg"
+    }
+  ]
+}

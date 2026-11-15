@@ -1,0 +1,84 @@
+---
+layout: base.njk
+---
+{% from "tarjetas.njk" import lista %}
+
+{# ---------- 1. Hero: título, subtítulo y botón ---------- #}
+<section class="ancho hero">
+  <div class="hero__panel">
+    <h1>{{ sitio.bienvenida.titulo }}</h1>
+    <p>{{ sitio.bienvenida.texto }}</p>
+    <div class="hero__acciones">
+      <a class="boton boton--claro" href="#articulos">{{ sitio.bienvenida.boton }}</a>
+      <a class="hero__enlace" href="#nosotros">Conoce quiénes somos</a>
+    </div>
+  </div>
+  <figure class="hero__figura">
+    <img src="/img/arte/{{ sitio.bienvenida.imagen }}" alt="Pintura de Jesús enseñando a una multitud sentada a su alrededor." fetchpriority="high">
+    <figcaption>{{ sitio.bienvenida.pie }}</figcaption>
+  </figure>
+</section>
+
+{# ---------- 2. Todos los artículos, del más nuevo al más antiguo ---------- #}
+<section class="ancho bloque" id="articulos" aria-labelledby="ultimos">
+  <h2 class="bloque__titulo" id="ultimos">Últimos artículos</h2>
+  {{ lista(collections.articulos) }}
+</section>
+
+{# ---------- 3. Temas: un cuadro por sección ---------- #}
+<section class="ancho bloque" aria-labelledby="temas">
+  <h2 class="bloque__titulo" id="temas">Explora por tema</h2>
+  <ul class="temas">
+    {%- for s in sitio.secciones %}
+    <li class="revelar" style="--i: {{ loop.index0 }}">
+      <a class="tema" href="/{{ s.slug }}/">
+        <img src="/img/secciones/{{ s.slug }}.jpg" alt="" loading="lazy" style="object-position: {{ s.foco }}">
+        <span class="tema__texto">
+          <span class="tema__nombre">{{ s.nombre }}</span>
+          <span class="tema__descripcion">{{ s.descripcion }}</span>
+        </span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+{# ---------- 4. Sobre nosotros ---------- #}
+<section class="ancho bloque nosotros" id="nosotros" aria-labelledby="titulo-nosotros">
+  <img class="nosotros__img revelar" src="/img/arte/{{ sitio.nosotros.imagen }}" alt="Una Biblia abierta sobre una mesa de madera, entre hojas de otoño." loading="lazy">
+  <div class="nosotros__texto revelar" style="--i: 1">
+    <h2 class="bloque__titulo" id="titulo-nosotros">{{ sitio.nosotros.titulo }}</h2>
+    {%- for parrafo in sitio.nosotros.texto %}
+    <p>{{ parrafo }}</p>
+    {%- endfor %}
+    <a class="boton boton--azul" href="/quienes-somos/">Conoce más sobre nosotros</a>
+  </div>
+</section>
+
+{# ---------- 5. Contacto ---------- #}
+<section class="ancho bloque" id="contacto" aria-labelledby="titulo-contacto">
+  <div class="contacto revelar">
+    <div class="contacto__texto">
+      <h2 id="titulo-contacto">{{ sitio.contacto.titulo }}</h2>
+      <p>{{ sitio.contacto.texto }}</p>
+    </div>
+
+    <form class="formulario" data-contacto="{{ sitio.contacto.correo }}"
+          action="mailto:{{ sitio.contacto.correo }}" method="post" enctype="text/plain" novalidate>
+      <div class="campo">
+        <label for="nombre">Tu nombre</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+      </div>
+      <div class="campo">
+        <label for="correo">Tu correo</label>
+        <input id="correo" name="correo" type="email" autocomplete="email" inputmode="email" required>
+      </div>
+      <div class="campo">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+      </div>
+      <button class="boton boton--claro" type="submit">Enviar mensaje</button>
+      <p class="formulario__aviso" data-aviso role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

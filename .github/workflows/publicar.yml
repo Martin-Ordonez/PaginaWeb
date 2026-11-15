@@ -1,0 +1,60 @@
+# Publica la página en GitHub Pages cada vez que se suben cambios ("Push").
+# No hace falta tocar este archivo.
+
+name: Publicar la página
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permite publicarla a mano desde la pestaña "Actions"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si llegan dos publicaciones seguidas, solo se completa la última.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  armar:
+    name: Armar la página
+    runs-on: ubuntu-latest
+    steps:
+      - name: Traer los archivos
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Averiguar la dirección de la página
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Instalar Eleventy
+        run: npm ci
+
+      - name: Armar la página
+        run: npx eleventy --pathprefix="${{ steps.pages.outputs.base_path }}/"
+
+      - name: Guardar el resultado
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publicar:
+    name: Publicar
+    needs: armar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
